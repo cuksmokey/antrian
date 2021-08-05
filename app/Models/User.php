@@ -45,4 +45,9 @@ class User extends Authenticatable
     // {
     //     $this->attributes['password'] = bcrypt($password);
     // }
+
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
 }

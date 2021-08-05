@@ -1,3 +1,5 @@
 <x-app>
-    Welcome!.
+    <x-container>
+        Welcome..
+    </x-container>
 </x-app>

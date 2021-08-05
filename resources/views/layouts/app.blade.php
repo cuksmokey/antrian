@@ -25,7 +25,9 @@
 
     <x-navbar></x-navbar>
 
-    {{ $slot }}
+    <div class="pt-4">
+        {{ $slot }}
+    </div>
 
 </body>
 </html>

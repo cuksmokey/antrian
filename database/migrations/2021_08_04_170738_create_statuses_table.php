@@ -15,12 +15,20 @@ class CreateStatusesTable extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('user_id'); banyak data
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             // $table->foreignId('user_id');
             $table->string('identifier')->unique();
             $table->text('body');
             $table->timestamps();
+
+            // relasi
+            // join
+            // banyak data
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreignId('user_id');
+
+            // pilih table mana
+            // $table->foreignId('user_id')->constrained('users');
         });
     }
 

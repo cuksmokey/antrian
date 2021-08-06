@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Status;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // $2y$10$tOuO48CEd.sSbRtSEOnVfuzczFaCi9Pn50ZBGn2bzZBFl/rNAoFFq
+        // satu user banyak status/data
+        // User::factory()->has(Status::factory()->count(5))->count(5)->create();
+
+        // cara cepat
+        User::factory()->hasStatuses(5)->count(10)->create();
+
+        // follow
+        // $user1 = User::find(1);
+        // $user2 = User::find(2);
+        // $user1->following()->save($user2);
     }
 }

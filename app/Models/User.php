@@ -48,6 +48,30 @@ class User extends Authenticatable
 
     public function statuses()
     {
+        // banyak data
         return $this->hasMany(Status::class);
     }
+
+    public function follows()
+    {
+        // user bisa banyak follower
+        // follower bisa banyak following
+        // tanpa model created updated tidak terisi otomastis jadi harus tambah withTimestamps()
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')->withTimestamps();
+    }
+
+    public function follow(User $user)
+    {
+        return $this->follows()->save($user);
+    }
+
+    // public function timeline()
+    // {
+    //     $following = $this->follows->pluck('id');
+    //     return $statuses = Status::whereIn('user_id', $following)
+    //         ->orWhere('user_id', $this->id)
+    //         ->latest()
+    //         ->get();
+    // }
+
 }

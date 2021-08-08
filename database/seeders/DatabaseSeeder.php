@@ -20,11 +20,14 @@ class DatabaseSeeder extends Seeder
         // User::factory()->has(Status::factory()->count(5))->count(5)->create();
 
         // cara cepat
-        User::factory()->hasStatuses(5)->count(10)->create();
+        // User::factory()->hasStatuses(5)->count(10)->create();
 
         // follow
         // $user1 = User::find(1);
         // $user2 = User::find(2);
         // $user1->following()->save($user2);
+
+        \App\Models\Poli::factory()->hasDokters(7)->count(10)->create();
+        User::factory()->create();
     }
 }

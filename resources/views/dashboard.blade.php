@@ -1,5 +1,5 @@
 <x-app>
     <x-container>
-        Welcome.. App Antrian..
+        Dashboard
     </x-container>
 </x-app>

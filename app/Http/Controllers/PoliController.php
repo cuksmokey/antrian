@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
+use App\Models\Poli;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
-class LoginController extends Controller
+class PoliController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,9 @@ class LoginController extends Controller
      */
     public function index()
     {
-        //
+        return view('poli.table', [
+            'polis' => Poli::latest()->paginate(5),
+        ]);
     }
 
     /**
@@ -26,7 +27,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        return view('poli.create');
     }
 
     /**
@@ -35,15 +36,19 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LoginRequest $request)
+    public function store(Request $request)
     {
-        if(Auth::attempt($request->only('email','password'))) {
-            return redirect('dashboard')->with('success', 'Berhasil Login!.');
-        }
-
-        throw ValidationException::withMessages([
-            'email' => 'Email atau Password Salah!',
+        // dd('poli');
+        $request->validate([
+            'nama_poli' => ['required', 'unique:polis']
         ]);
+
+        Poli::create([
+            'nama_poli' => request('nama_poli'),
+            'slug_poli' => Str::slug(request('nama_poli')),
+        ]);
+
+        return redirect('poli')->with('success','Berhasil Ditambahkan!.');
     }
 
     /**
@@ -65,7 +70,9 @@ class LoginController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Poli::where('id', $id)->first();
+        // dd($data);
+        return view('poli.edit', compact('data'));
     }
 
     /**
@@ -77,7 +84,12 @@ class LoginController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_poli' => ['required', 'unique:polis']
+        ]);
+        Poli::where('id', $id)->first()->update(['nama_poli' => $request->nama_poli]);
+
+        return redirect('poli')->with('success','Berhasil Diedit!.');
     }
 
     /**
@@ -88,6 +100,7 @@ class LoginController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Poli::where('id', $id)->first()->delete();
+        return back()->with('success','Berhasil Dihapus!.');
     }
 }

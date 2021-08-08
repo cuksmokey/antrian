@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
-class LoginController extends Controller
+class JadwalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +13,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        //
+        return view('jadwal.table');
     }
 
     /**
@@ -26,7 +23,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        //
     }
 
     /**
@@ -35,15 +32,9 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LoginRequest $request)
+    public function store(Request $request)
     {
-        if(Auth::attempt($request->only('email','password'))) {
-            return redirect('dashboard')->with('success', 'Berhasil Login!.');
-        }
-
-        throw ValidationException::withMessages([
-            'email' => 'Email atau Password Salah!',
-        ]);
+        //
     }
 
     /**

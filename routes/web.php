@@ -1,17 +1,35 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\{HomeController, DokterController, JadwalController, LoginController, LogoutController, PoliController, RegisterController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('timeline', TimelineController::class)->name('timeline');
+    Route::view('dashboard','dashboard')->name('dashboard');
+    Route::view('master','master.index')->name('master');
+
+    // Route::get('timeline', TimelineController::class)->name('timeline');
     Route::post('logout', LogoutController::class)->name('logout');
+
+    // poli
+    Route::get('poli', [PoliController::class, 'index'])->name('poli');
+    Route::get('poli/create', [PoliController::class, 'create'])->name('poli.create');
+    Route::get('poli/{id}/edit', [PoliController::class, 'edit'])->name('poli.edit');
+    Route::post('poli', [PoliController::class, 'store']);
+    Route::put('poli/{id}', [PoliController::class, 'update'])->name('poli.update');
+    Route::delete('poli/{id}', [PoliController::class, 'destroy'])->name('poli.delete');
+
+    // dokter
+    Route::get('dokter', [DokterController::class, 'index'])->name('dokter');
+    Route::get('dokter/create', [DokterController::class, 'create'])->name('dokter.create');
+    Route::get('dokter/{id}/edit', [DokterController::class, 'edit'])->name('dokter.edit');
+    Route::post('dokter', [DokterController::class, 'store']);
+    Route::put('dokter/{id}', [DokterController::class, 'update'])->name('dokter.update');
+    Route::delete('dokter/{id}', [DokterController::class, 'destroy'])->name('dokter.delete');
+
+    // jadwal
+    Route::get('jadwal', [JadwalController::class, 'index'])->name('jadwal');
 });
 
 Route::middleware(['guest'])->group(function () {

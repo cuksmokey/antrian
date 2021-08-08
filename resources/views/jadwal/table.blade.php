@@ -1,5 +1,5 @@
 <x-app>
     <x-container>
-        Welcome.. App Antrian..
+        Jadwal..
     </x-container>
 </x-app>

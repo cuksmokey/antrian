@@ -8,7 +8,11 @@
                 @guest
                     <div></div>
                 @else
-                    <a href="{{ route('timeline') }}" class="{{ request()->routeIs('timeline') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Timeline</a>
+                    <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Dashboard</a>
+                    <a href="{{ route('poli') }}" class="{{ request()->routeIs('poli') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Poli</a>
+                    <a href="{{ route('dokter') }}" class="{{ request()->routeIs('dokter') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Dokter</a>
+                    <a href="{{ route('jadwal') }}" class="{{ request()->routeIs('jadwal') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Jadwal</a>
+                    {{-- <a href="{{ route('timeline') }}" class="{{ request()->routeIs('timeline') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Timeline</a> --}}
                 @endguest
             </div>
         </div>

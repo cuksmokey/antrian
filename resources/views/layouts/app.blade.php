@@ -12,6 +12,10 @@
     {{-- alpine js --}}
     <script src="{{ asset('alpine.min.js') }}" defer></script>
 
+    {{-- jsquery --}}
+    {{-- <script src="{{ asset('jquery-3.6.0.min.js') }}"></script> --}}
+    <script src="{{ asset('jquery.js') }}"></script>
+
 </head>
 <body class="antialiased">
 

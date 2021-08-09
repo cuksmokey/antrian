@@ -11,5 +11,13 @@ class Jadwal extends Model
 
     protected $guarded = [];
 
+    public function poli()
+    {
+        return $this->belongsTo(Poli::class);
+    }
 
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class);
+    }
 }

@@ -30,6 +30,14 @@ Route::middleware(['auth'])->group(function () {
 
     // jadwal
     Route::get('jadwal', [JadwalController::class, 'index'])->name('jadwal');
+    Route::get('jadwal/create', [JadwalController::class, 'create'])->name('jadwal.create');
+    Route::get('jadwal/{id}/edit', [JadwalController::class, 'edit'])->name('jadwal.edit');
+    Route::post('jadwal', [JadwalController::class, 'store']);
+    Route::put('jadwal/{id}', [JadwalController::class, 'update'])->name('jadwal.update');
+    Route::delete('jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.delete');
+    //
+    Route::get('jadwal/getDokter/{id}', [JadwalController::class, 'getDokter'])->name('jadwal.getDokter');
+    Route::get('getDokterEdit/{id}', [JadwalController::class, 'getDokter']);
 });
 
 Route::middleware(['guest'])->group(function () {

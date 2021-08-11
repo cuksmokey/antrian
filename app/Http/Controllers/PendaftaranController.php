@@ -18,7 +18,8 @@ class PendaftaranController extends Controller
     public function index()
     {
         $poli = Poli::all();
-        return view('home', compact('poli'));
+        $daftar = Pendaftaran::latest()->first();
+        return view('home', compact('poli', 'daftar'));
         // return view('home', [
         //     'daftar' => Jadwal::with('dokter','poli')->latest()->paginate(5),
         // ]);
@@ -34,6 +35,12 @@ class PendaftaranController extends Controller
     {
         $getjadwal = Jadwal::where("dokter_id", $id)->pluck("slug", "id");
         return response()->json($getjadwal);
+    }
+
+    public function getDaftar($id)
+    {
+        $getDaftar = Pendaftaran::where("id", $id)->first();
+        return response()->json($getDaftar);
     }
 
     /**
@@ -96,7 +103,7 @@ class PendaftaranController extends Controller
             'jadwal_id' => request('jadwal_id'),
         ]);
 
-        return redirect('/')->with('success','Berhasil Ditambahkan!. <br/>'.$no_antrian);
+        return redirect('/')->with('success','Berhasil Melakukan Pendaftaran!...');
     }
 
     /**

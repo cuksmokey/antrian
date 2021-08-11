@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PendaftaranController::class, 'index'])->name('home');
 Route::post('/', [PendaftaranController::class, 'store']);
 
+Route::get('getDaftar/{id}', [PendaftaranController::class, 'getDaftar']);
 Route::get('getDokter/{id}', [PendaftaranController::class, 'getDokter']);
 Route::get('getJadwal/{id}', [PendaftaranController::class, 'getJadwal']);
 

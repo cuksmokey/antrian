@@ -48,7 +48,8 @@ class PoliController extends Controller
             'slug_poli' => Str::slug(request('nama_poli')),
         ]);
 
-        return redirect('poli')->with('success','Berhasil Ditambahkan!.');
+        // return redirect('poli')->with('success','Berhasil Ditambahkan!.');
+        return back()->with('success','Berhasil Ditambahkan!.');
     }
 
     /**

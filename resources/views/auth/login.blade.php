@@ -19,7 +19,7 @@
                     <input type="password" name="password" id="password" class="border border-gray-300 shadow focus:outline-none focus:border-gray-500 rounded p-1 w-full">
                 </div>
 
-                <button type="submit" class="w-full py-2 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white font-medium rounded">Login</button>
+                <button type="submit" class="w-full py-2 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white font-medium focus:outline-none rounded">Login</button>
             </form>
         </div>
     </div>

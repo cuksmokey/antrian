@@ -39,13 +39,6 @@ class JadwalController extends Controller
         return response()->json($getdokter);
     }
 
-    public function getDokterEdit(Request $request)
-    {
-        $id = $request->get('dokterID');
-        $getdokter = Dokter::where("poli_id", $id)->pluck("nama_dokter", "id");
-        return response()->json($getdokter);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -62,12 +55,15 @@ class JadwalController extends Controller
             'sampai' => ['required'],
         ]);
 
+        $slug = request('dari').' - '.request('sampai').' - '.request('shift');
+
         Jadwal::create([
             'poli_id' => request('poli_id'),
             'dokter_id' => request('dokter_id'),
             'shift' => request('shift'),
             'dari' => request('dari'),
             'sampai' => request('sampai'),
+            'slug' => $slug,
         ]);
 
         return redirect('jadwal')->with('success','Berhasil Ditambahkan!.');
@@ -92,10 +88,9 @@ class JadwalController extends Controller
      */
     public function edit($id)
     {
-        $poli = Poli::all();
         $data = Jadwal::with('dokter','poli')->where('id', $id)->first();
         // dd($data);
-        return view('jadwal.edit', compact('data', 'poli'));
+        return view('jadwal.edit', compact('data'));
     }
 
     /**
@@ -107,7 +102,26 @@ class JadwalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            // 'poli_id' => ['required'],
+            // 'dokter_id' => ['required'],
+            'shift' => ['required'],
+            'dari' => ['required', ''],
+            'sampai' => ['required'],
+        ]);
+
+        $slug = request('dari').' - '.request('sampai').' - '.request('shift');
+
+        Jadwal::where('id', $id)->first()->update([
+            // 'poli_id' => $request->poli_id,
+            // 'dokter_id' => $request->dokter_id,
+            'shift' => $request->shift,
+            'dari' => $request->dari,
+            'sampai' => $request->sampai,
+            'slug' => $slug,
+        ]);
+
+        return redirect('jadwal')->with('success','Berhasil Diedit!.');
     }
 
     /**
@@ -118,6 +132,7 @@ class JadwalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Jadwal::where('id', $id)->first()->delete();
+        return back()->with('success','Berhasil Dihapus!.');
     }
 }

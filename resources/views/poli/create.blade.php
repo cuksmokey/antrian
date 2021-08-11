@@ -2,6 +2,11 @@
     <x-container>
         <div class="flex justify-center">
             <div class="max-w-md w-full border border-gray-300 shadow-lg p-10 rounded-lg">
+
+                <div class="mb-3">
+                    <x-alert-success></x-alert-success>
+                </div>
+
                 <form action="{{ route('poli') }}" method="post">
                     @csrf
 
@@ -13,7 +18,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="w-full py-2 bg-blue-600 text-gray-100 hover:bg-blue-500 hover:text-white font-medium rounded">Create</button>
+                    <x-button-blue>Create</x-button-blue>
                 </form>
             </div>
         </div>

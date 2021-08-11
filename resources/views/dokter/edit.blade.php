@@ -15,18 +15,15 @@
                     </div>
 
                     <div class="mb-4">
-                        <select name="poli_id" id="poli_id" class="@error('poli_id') border-red-500 @enderror w-full p-2 border border-gray-300 shadow rounded">
+                        <select disabled name="poli_id" id="poli_id" class="@error('poli_id') border-red-500 @enderror w-full p-2 border border-gray-300 shadow rounded">
                             <option value="{{ $data->poli->id }}">{{ $data->poli->nama_poli }}</option>
-                            @foreach ($poli as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_poli }}</option>
-                            @endforeach
                         </select>
                         @error('poli_id')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <button type="submit" class="w-full py-2 bg-blue-600 text-gray-100 hover:bg-blue-500 hover:text-white font-medium rounded">Create</button>
+                    <x-button-blue>Edit</x-button-blue>
                 </form>
             </div>
         </div>

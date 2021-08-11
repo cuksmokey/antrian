@@ -14,7 +14,7 @@
                             @endforeach
                         </select>
                         @error('poli_id')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            <span class="text-red-500 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -24,7 +24,7 @@
                             <option value="">Pilih Dokter...</option>
                         </select>
                         @error('dokter_id')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            <span class="text-red-500 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -36,7 +36,7 @@
                             <option value="Sore">Sore</option>
                         </select>
                         @error('shift')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            <span class="text-red-500 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -45,7 +45,7 @@
                         <input type="time" name="dari" id="dari" value="{{ old('dari') }}"
                             class="@error('dari') border-red-500 @enderror border border-gray-300 shadow focus:outline-none focus:border-gray-500 rounded p-1 w-full">
                         @error('dari')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            <span class="text-red-500 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -54,12 +54,11 @@
                         <input type="time" name="sampai" id="sampai" value="{{ old('sampai') }}"
                             class="@error('sampai') border-red-500 @enderror border border-gray-300 shadow focus:outline-none focus:border-gray-500 rounded p-1 w-full">
                         @error('sampai')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            <span class="text-red-500 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <button type="submit"
-                        class="w-full py-2 bg-blue-600 text-gray-100 hover:bg-blue-500 hover:text-white font-medium rounded">Create</button>
+                    <x-button-blue>Create</x-button-blue>
                 </form>
             </div>
         </div>
@@ -76,6 +75,7 @@
                             success: function(data) {
                                 console.log(data);
                                 jQuery('.plh-dokter').empty();
+                                $('.plh-dokter').append('<option value="">Pilih Dokter...</option>');
                                 jQuery.each(data, function(key, value) {
                                     $('.plh-dokter').append('<option value="' + key + '">' + value + '</option>');
                                 });
@@ -83,6 +83,7 @@
                         });
                     } else {
                         $('.plh-dokter').empty();
+                        $('.plh-dokter').append('<option value="">Pilih Dokter...</option>');
                     }
                 });
             });

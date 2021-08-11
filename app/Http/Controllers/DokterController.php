@@ -53,7 +53,8 @@ class DokterController extends Controller
             'poli_id' => request('poli_id'),
         ]);
 
-        return redirect('dokter')->with('success','Berhasil Ditambahkan!.');
+        // return redirect('dokter')->with('success','Berhasil Ditambahkan!.');
+        return back()->with('success','Berhasil Ditambahkan!.');
     }
 
     /**
@@ -75,10 +76,8 @@ class DokterController extends Controller
      */
     public function edit($id)
     {
-        $poli = Poli::all();
         $data = Dokter::with('poli')->where('id', $id)->first();
-        // dd($data);
-        return view('dokter.edit', compact('data', 'poli'));
+        return view('dokter.edit', compact('data'));
     }
 
     /**
@@ -92,12 +91,13 @@ class DokterController extends Controller
     {
         $request->validate([
             'nama_dokter' => ['required'],
-            'poli_id' => ['required'],
+            // 'poli_id' => ['required'],
         ]);
 
         Dokter::where('id', $id)->first()->update([
             'nama_dokter' => $request->nama_dokter,
-            'poli_id' => $request->poli_id,
+            // 'poli_id' => $request->poli_id,
+            'slug_dokter' => Str::slug(request('nama_dokter')),
         ]);
 
         return redirect('dokter')->with('success','Berhasil Diedit!.');

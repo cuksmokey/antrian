@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Controllers\{HomeController, DokterController, JadwalController, LoginController, LogoutController, PoliController, RegisterController};
+use App\Http\Controllers\{HomeController, DokterController, JadwalController, LoginController, LogoutController, PendaftaranController, PoliController, RegisterController};
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class)->name('home');
+Route::get('/', [PendaftaranController::class, 'index'])->name('home');
+Route::post('/', [PendaftaranController::class, 'store']);
+
+Route::get('getDokter/{id}', [PendaftaranController::class, 'getDokter']);
+Route::get('getJadwal/{id}', [PendaftaranController::class, 'getJadwal']);
 
 Route::middleware(['auth'])->group(function () {
     Route::view('dashboard','dashboard')->name('dashboard');
@@ -37,7 +41,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.delete');
     //
     Route::get('jadwal/getDokter/{id}', [JadwalController::class, 'getDokter'])->name('jadwal.getDokter');
-    Route::get('getDokterEdit/{id}', [JadwalController::class, 'getDokter']);
 });
 
 Route::middleware(['guest'])->group(function () {

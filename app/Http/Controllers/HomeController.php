@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +15,9 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('home');
+        // return view('home');
+        return view('home', [
+            'jadwals' => Jadwal::with('dokter','poli','jadwal')->latest()->paginate(5),
+        ]);
     }
 }

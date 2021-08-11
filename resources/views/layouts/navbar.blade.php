@@ -6,7 +6,7 @@
             </div>
             <div>
                 @guest
-                    <div></div>
+                <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Pendaftaran Pasien Baru</a>
                 @else
                     <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Dashboard</a>
                     <a href="{{ route('poli') }}" class="{{ request()->routeIs('poli') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Poli</a>

@@ -21,7 +21,7 @@
                 <a href="{{ route('register') }}" class="{{ request()->routeIs('register') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Register</a>
                 <a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'bg-gray-700 text-white' : 'text-gray-300' }} px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Login</a>
             @else
-                <a href="{{ route('home') }}" class="text-gray-300 px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">{{ Auth::user()->name }}</a>
+                <a href="{{ route('dashboard') }}" class="text-gray-300 px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">{{ Auth::user()->name }}</a>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button type="submit" class="text-gray-300 px-3 py-2 hover:bg-gray-700 hover:text-white text-sm font-medium rounded">Logout</button>

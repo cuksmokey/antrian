@@ -21,8 +21,14 @@ class JadwalFactory extends Factory
      */
     public function definition()
     {
+        // 1	1	1	Pagi	08:00:00	16:00:00	08:00 - 16:00 - Pagi	2021-08-12 13:25:55	2021-08-12 13:25:55
         return [
-            //
+            'poli_id' => '1',
+            'dokter_id' => '1',
+            'shift' => 'Pagi',
+            'dari' => '08:00:00',
+            'sampai' => '16:00:00',
+            'slug' => '08:00 - 16:00 - Pagi',
         ];
     }
 }

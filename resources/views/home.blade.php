@@ -122,7 +122,7 @@
                                             <tr>
                                                 <td>No Registrasi</td>
                                                 <td>:</td>
-                                                <td>{{ $daftar->nomer_antrian ?? '' }}</td>
+                                                <td>{{ $daftar->nomer_daftar ?? '' }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Nama</td>
@@ -177,7 +177,7 @@
                         <button type="button" class="btn-cancel inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none ml-3 sm:text-sm">
                             Tutup
                         </button>
-                        <a href="{{ route('pdf') }}" class="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none ml-3 sm:text-sm">
+                        <a href="{{ route('pdf') }}" target="_blank" class="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none ml-3 sm:text-sm">
                             Print
                         </a>
                     </div>
@@ -191,7 +191,6 @@
 
                 jQuery('.btn-print').on('click', function() {
                     var idid = jQuery('.idid').val();
-                    jQuery('.modallll').show();
 
                     if (idid) {
                         jQuery.ajax({

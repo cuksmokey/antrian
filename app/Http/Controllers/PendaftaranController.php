@@ -52,7 +52,9 @@ class PendaftaranController extends Controller
             'count' => $count,
         ]);
 
-        return $pdf->download('daftar.pdf');
+        // ->setPaper('a5', 'potrait')
+        // return $pdf->download('daftar.pdf');
+        return $pdf->stream($data->nomer_daftar.'.pdf');
     }
 
     /**
@@ -106,7 +108,7 @@ class PendaftaranController extends Controller
 
         Pendaftaran::create([
             'tgl_periksa' => request('tgl_periksa'),
-            'nomer_antrian' => $no_antrian,
+            'nomer_daftar' => $no_antrian,
             'nama' => request('nama'),
             'alamat' => request('alamat'),
             'tgl_lahir' => request('tgl_lahir'),

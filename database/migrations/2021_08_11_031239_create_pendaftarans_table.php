@@ -17,7 +17,8 @@ class CreatePendaftaransTable extends Migration
             $table->id();
             // $table->string('peserta');
             $table->date('tgl_periksa');
-            $table->string('nomer_antrian');
+            $table->string('nomer_daftar');
+            $table->string('nomer_antrian')->nullable();
             $table->string('nama');
             $table->string('alamat');
             $table->date('tgl_lahir');

@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
         // $user2 = User::find(2);
         // $user1->following()->save($user2);
 
-        // \App\Models\Poli::factory()->hasDokters(5)->count(10)->create();
+        \App\Models\Poli::factory()->hasDokters(3)->count(5)->create();
+        \App\Models\Jadwal::factory()->create();
         User::factory()->create();
     }
 }

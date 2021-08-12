@@ -4,7 +4,7 @@
             <div class="max-w-md w-full border border-gray-300 shadow-lg p-10 rounded-lg">
                 <div class="mb-3">
                     <x-alert-success>
-                        <button class="btn-print mt-1 px-2 py-1 bg-green-800 text-green-300 rounded block">Print Bukti Daftar</button>
+                        <button class="btn-print mt-1 px-2 py-1 bg-green-800 text-white rounded block">Print Bukti Daftar</button>
                     </x-alert-success>
                 </div>
 
@@ -95,68 +95,99 @@
 
                     <input type="hidden" name="idid" class="idid" value="{{ $daftar->id ?? '' }}">
 
-                    <button type="submit"
-                        class="w-full py-2 bg-blue-600 text-gray-100 hover:bg-blue-500 hover:text-white font-medium rounded btn-daftar">Daftar</button>
+                    <button type="submit" class="w-full py-2 bg-blue-600 text-gray-100 hover:bg-blue-500 hover:text-white font-medium rounded btn-daftar">Daftar</button>
                 </form>
             </div>
         </div>
 
-        <!-- This example requires Tailwind CSS v2.0+ -->
-        <div class="fixed z-10 inset-0 overflow-y-auto modallll" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="modallll fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-
-                <!-- This element is to trick the browser into centering the modal contents. -->
                 <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-                <div
-                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <div class="sm:flex sm:items-start">
-                            <div class="mt-3 text-center sm:mt-0 sm:text-left">
+                <div class="inline-block bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all align-middle max-w-xl w-full">
+                    <div class="bg-white pt-4 px-2">
+                        <div class="flex items-start">
+                            <div class="mt-3 text-left">
                                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
                                     Pendaftaran Berhasil!.
                                 </h3>
                                 <div class="mt-2 mdl-content">
-                                    {{-- <p class="text-sm text-gray-500">
-                                        Are you sure you want to deactivate your account? All of your data will be
-                                        permanently removed. This action cannot be undone.
-                                    </p> --}}
+                                    <table style="max-width: 100%">
+                                        <thead>
+                                            <th style="max-width: auto"></th>
+                                            <th style="max-width: auto"></th>
+                                            <th style="max-width: auto"></th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>No Registrasi</td>
+                                                <td>:</td>
+                                                <td>{{ $daftar->nomer_antrian ?? '' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nama</td>
+                                                <td>:</td>
+                                                <td>{{ $daftar->nama ?? '' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alamat</td>
+                                                <td>:</td>
+                                                <td>{{ $daftar->alamat ?? '' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tgl Lahir</td>
+                                                <td>:</td>
+                                                @if ($count == 0)
+                                                    <td></td>
+                                                @else
+                                                    <td>{{ $daftar->tgl_lahir->format('d M Y') ?? '' }}</td>
+                                                @endif
+                                            </tr>
+                                            <tr>
+                                                <td>Tgl Daftar</td>
+                                                <td>:</td>
+                                                @if ($count == 0)
+                                                    <td></td>
+                                                @else
+                                                    <td>{{ $daftar->tgl_periksa->format('d M Y') ?? '' }}</td>
+                                                @endif
+                                            </tr>
+                                            <tr>
+                                                <td>Poli</td>
+                                                <td>:</td>
+                                                <td>{{ $daftar->poli->nama_poli ?? '' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dokter</td>
+                                                <td>:</td>
+                                                <td>{{ $daftar->dokter->nama_dokter ?? '' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jadwal</td>
+                                                <td>:</td>
+                                                <td>{{ $daftar->jadwal->dari ?? '' }} - {{ $daftar->jadwal->sampai ?? '' }} ( {{ $daftar->jadwal->shift ?? '' }} )</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button type="button"
-                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-                            Deactivate
+                    <div class="bg-gray-50 py-4 px-2 flex flex-row-reverse">
+                        <button type="button" class="btn-cancel inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none ml-3 sm:text-sm">
+                            Tutup
                         </button>
-                        <button type="button"
-                            class="btn-cancel mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                            Cancel
-                        </button>
+                        <a href="{{ route('pdf') }}" class="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none ml-3 sm:text-sm">
+                            Print
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        {{-- <div x-data="{ open: false }">
-        <button @click="open = true">Open Dropdown</button>
-
-        <ul x-show="open" @click.away="open = false">
-            Dropdown Body
-        </ul>
-        </div> --}}
-
         <script type="text/javascript">
-        // btn-cancel
-
             jQuery(document).ready(function() {
                 jQuery('.modallll').hide();
-
-                jQuery('.btn-cancel').on('click', function() {
-                    jQuery('.modallll').hide();
-                });
 
                 jQuery('.btn-print').on('click', function() {
                     var idid = jQuery('.idid').val();
@@ -168,17 +199,16 @@
                             type: "GET",
                             dataType: "json",
                             success: function(data) {
-                                console.log(data);
                                 jQuery('.modallll').show();
-                                jQuery('.mdl-content').empty();
-                                $('.mdl-content').append(`
-                                    <div>{{ $daftar->nama }}</div>
-                                `);
                             }
                         });
                     } else {
                         jQuery('.modallll').hide();
                     }
+                });
+
+                jQuery('.btn-cancel').on('click', function() {
+                    jQuery('.modallll').hide();
                 });
 
                 // plh dokter
@@ -190,7 +220,7 @@
                             type: "GET",
                             dataType: "json",
                             success: function(data) {
-                                console.log(data);
+                                // console.log(data);
                                 jQuery('.plh-dokter').empty();
                                 $('.plh-dokter').append('<option value="">Pilih Dokter...</option>');
                                 jQuery.each(data, function(key, value) {
@@ -213,7 +243,7 @@
                             type: "GET",
                             dataType: "json",
                             success: function(data) {
-                                console.log(data);
+                                // console.log(data);
                                 jQuery('.plh-jadwal').empty();
                                 $('.plh-jadwal').append('<option value="">Pilih Jadwal...</option>');
                                 jQuery.each(data, function(key, value) {

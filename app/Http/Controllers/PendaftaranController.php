@@ -7,6 +7,7 @@ use App\Models\Jadwal;
 use App\Models\Pendaftaran;
 use App\Models\Poli;
 use Illuminate\Http\Request;
+use PDF;
 
 class PendaftaranController extends Controller
 {
@@ -17,12 +18,10 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
+        $count = Pendaftaran::count();
         $poli = Poli::all();
-        $daftar = Pendaftaran::latest()->first();
-        return view('home', compact('poli', 'daftar'));
-        // return view('home', [
-        //     'daftar' => Jadwal::with('dokter','poli')->latest()->paginate(5),
-        // ]);
+        $daftar = Pendaftaran::with('poli', 'dokter', 'jadwal')->latest()->first();
+        return view('home', compact('poli', 'daftar', 'count'));
     }
 
     public function getDokter($id)
@@ -41,6 +40,19 @@ class PendaftaranController extends Controller
     {
         $getDaftar = Pendaftaran::where("id", $id)->first();
         return response()->json($getDaftar);
+    }
+
+    // Generate PDF
+    public function pdf() {
+        $count = Pendaftaran::count();
+        $data = Pendaftaran::with('poli', 'dokter', 'jadwal')->latest()->first();
+
+        $pdf = PDF::loadView('pdf', [
+            'daftar' => $data,
+            'count' => $count,
+        ]);
+
+        return $pdf->download('daftar.pdf');
     }
 
     /**
@@ -89,7 +101,8 @@ class PendaftaranController extends Controller
             }
         }
 
-        $no_antrian = 'R0'.$i;
+        $newDate = date('dmy', strtotime($request->tgl_periksa));
+        $no_antrian = 'RO-'.$newDate.'-00'.$i;
 
         Pendaftaran::create([
             'tgl_periksa' => request('tgl_periksa'),

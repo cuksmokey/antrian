@@ -73,7 +73,7 @@
                             type: "GET",
                             dataType: "json",
                             success: function(data) {
-                                console.log(data);
+                                // console.log(data);
                                 jQuery('.plh-dokter').empty();
                                 $('.plh-dokter').append('<option value="">Pilih Dokter...</option>');
                                 jQuery.each(data, function(key, value) {

@@ -7,7 +7,7 @@
     <title>{{ $daftar->nomer_daftar ?? 'Nomer Antrian' }}</title>
 </head>
 <body>
-    <h3>Pendaftaran Online App Antrian</h3>
+    <h3>PENDAFTARAN ONLINE PUSKESMAS JATEN 1</h3>
     <table style="max-width: 100%">
         <thead>
             <th style="max-width: auto"></th>

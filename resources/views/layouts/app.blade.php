@@ -29,7 +29,7 @@
 
     <x-navbar></x-navbar>
 
-    <div class="pt-4">
+    <div class="pt-20">
         {{ $slot }}
     </div>
 
